@@ -10,7 +10,7 @@
 <style>
   :root{
     --ink:#0B0E14; --panel:#11161F; --panel2:#161D28; --line:#222B38;
-    --teal:#35D0BE; --amber:#F2A93B; --red:#E5484D;
+    --teal:#35D0BE; --amber:#F2A93B; --red:#E5484D; --eff:#46E0A0;
     --text:#E6EAF0; --dim:#8A93A3; --faint:#5C6573;
     --mono:'IBM Plex Mono',ui-monospace,monospace;
     --disp:'Space Grotesk',system-ui,sans-serif;
@@ -40,10 +40,18 @@
 
   .qrow{margin-top:34px; display:flex; gap:8px; flex-wrap:wrap; font-family:var(--mono); font-size:13px; color:var(--faint); letter-spacing:.04em}
   .qrow b{font-weight:600}
-  .qrow .w{color:var(--teal)} .qrow .wh{color:var(--amber)} .qrow .whe{color:var(--red)}
+  .qrow .w{color:var(--teal)} .qrow .wh{color:var(--amber)} .qrow .whe{color:var(--red)} .qrow .ef{color:var(--eff)}
 
   .grid{margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
   @media(max-width:780px){ .grid{grid-template-columns:1fr} }
+
+  .branch{margin-top:30px; display:flex; align-items:center; gap:14px}
+  .branch .ln{flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--line))}
+  .branch .ln.r{background:linear-gradient(90deg,var(--line),transparent)}
+  .branch .lbl{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--eff); white-space:nowrap}
+  .branch-sub{font-family:var(--disp); font-size:clamp(17px,2.6vw,21px); font-weight:600; color:var(--text); margin:14px 0 4px; letter-spacing:-.01em}
+  .branch-note{font-family:var(--mono); font-size:12px; color:var(--dim); max-width:66ch; line-height:1.6; margin-bottom:16px}
+  .grid-eff{display:grid; grid-template-columns:1fr}
 
   .card{position:relative; display:flex; flex-direction:column; background:var(--panel);
     border:1px solid var(--line); border-radius:16px; padding:22px 20px 18px; overflow:hidden;
@@ -85,8 +93,8 @@
       <span>Stability Diagnostics</span><span class="dot"></span>
       <span>A family of instruments</span>
     </div>
-    <h1>One governance law, read three ways.</h1>
-    <p class="lede">Most monitoring watches a machine fail. These instruments watch it lose stability, before the failure is visible. All three are built from a single idea: a system stays stable only while its absorption capacity keeps up with the load driving it. Each one reads that balance from a different angle, and each is validated on real, public data.</p>
+    <h1>One governance law, read four ways.</h1>
+    <p class="lede">Most monitoring watches a machine fail. Three of these instruments read its stability before the failure is visible; the fourth reads how efficiently it moves. All four come from a single idea: a system stays stable, and moves economically, only while its absorption capacity keeps up with the load driving it. Each one reads that balance from a different angle, and each is grounded in real, public data.</p>
 
     <div class="law">
       <span class="sym">&Theta; = <b>I / R</b></span>
@@ -96,7 +104,8 @@
     <div class="qrow">
       <span class="w"><b>WHEN</b></span><span>a resource runs out</span><span>&middot;</span>
       <span class="wh"><b>WHERE</b></span><span>the weak seam is</span><span>&middot;</span>
-      <span class="whe"><b>WHETHER</b></span><span>it is about to oscillate</span>
+      <span class="whe"><b>WHETHER</b></span><span>it is about to oscillate</span><span>&middot;</span>
+      <span class="ef"><b>HOW WELL</b></span><span>it moves</span>
     </div>
   </header>
 
@@ -134,11 +143,31 @@
 
   </main>
 
+  <div class="branch fade">
+    <span class="ln"></span>
+    <span class="lbl">A second branch</span>
+    <span class="ln r"></span>
+  </div>
+  <div class="branch-sub">The first three predict failure. This one finds waste.</div>
+  <div class="branch-note">The same law has a second use. Instead of asking when a machine breaks, it asks how much energy it burns to do its job, and where that energy is thrown away. Efficiency is the governance ratio minimized rather than monitored.</div>
+
+  <div class="grid-eff">
+    <a class="card fade" style="--ac:var(--eff)" href="https://oren-speiser.github.io/cost-of-transport/" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 04</div>
+      <div class="q">How well</div>
+      <div class="name">Cost of transport</div>
+      <div class="desc">Measures <b>how efficiently</b> a machine moves, and shows that choosing the right gait for each speed minimizes the energy cost of transport, which is the same load-over-capacity ratio.</div>
+      <div class="data">Efficiency, not failure.<br><span class="real">Real</span> measured quadruped power; energy-minimizing gaits on a real robot.</div>
+      <div class="go">View instrument <span class="arr">&nearr;</span></div>
+    </a>
+  </div>
+
   <div class="foot-note fade">
-    The instruments answer different questions, but they are not three ideas. They are one law,
-    <b>&Theta; = I/R</b>, instantiated three times. The same balance that says when a resource will run out
-    also says where coupling concentrates and whether a system is sliding toward instability.
-    Each page states its scope plainly, including its honest limits.
+    The instruments answer different questions, but they are not four ideas. They are one law,
+    <b>&Theta; = I/R</b>, instantiated four times. The same balance that says when a resource will run out
+    also says where coupling concentrates, whether a system is sliding toward instability, and how
+    efficiently it can move. Each page states its scope plainly, including its honest limits.
   </div>
 
   <footer>
