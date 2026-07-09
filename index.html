@@ -117,7 +117,7 @@
       <span class="whe"><b>WHETHER</b></span><span>it is about to oscillate</span><span>&middot;</span>
       <span class="ef"><b>HOW WELL</b></span><span>it moves</span><span>&middot;</span>
       <span class="w"><b>WHICH</b></span><span>unit in a fleet goes next</span><span>&middot;</span>
-      <span class="v"><b>HOW MUCH</b></span><span>an instruction can compress before it inverts</span>
+      <span class="v"><b>HOW MUCH</b></span><span>a prompt to an AI can compress before it inverts</span>
     </div>
   </header>
 
@@ -200,8 +200,8 @@
     <span class="lbl">A fourth branch</span>
     <span class="ln r"></span>
   </div>
-  <div class="branch-sub">The same law on a different substrate: instructions, not machines.</div>
-  <div class="branch-note">Compression has a load and a capacity too: the critical intent an instruction carries, against the token budget left after compression. This instrument measures where that channel fails, not a machine.</div>
+  <div class="branch-sub">The same law on a different substrate: prompts sent to a large language model, not machines.</div>
+  <div class="branch-note">Compression has a load and a capacity too: the critical intent a prompt carries into an AI model, against the token budget left after compression. This instrument measures where an AI instruction channel fails, not a machine.</div>
 
   <div class="grid-eff">
     <a class="card fade" style="--ac:var(--violet)" href="https://github.com/oren-speiser/compression-threshold-gauge" target="_blank" rel="noopener">
@@ -209,7 +209,7 @@
       <div class="num">INSTRUMENT 06</div>
       <div class="q">How much</div>
       <div class="name">Compression threshold gauge</div>
-      <div class="desc">Measures <b>how much</b> an instruction can be compressed before a safety constraint silently inverts, rather than degrades visibly.</div>
+      <div class="desc">Measures <b>how much</b> a prompt sent to an AI model can be compressed before a safety constraint silently inverts, rather than degrades visibly.</div>
       <div class="data">Constraint survival, not just savings.<br><span class="real">Real</span> 1,104 executions, three compressors vs. a random control; 92-100% of negation constraints silently inverted at typical compression; 204 of 246 breaks traced to channel deletion.</div>
       <div class="go">View instrument <span class="arr">&nearr;</span></div>
     </a>
@@ -230,4 +230,4 @@
 
 </div>
 </body>
-</html>
+  </html>
