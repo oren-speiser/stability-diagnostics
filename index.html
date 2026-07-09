@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stability Diagnostics: one governance law, five readings</title>
-<meta name="description" content="One stability law, five validated instruments: live fleet radar on 10,000+ satellites, NASA battery early warning, safe control filters. Validated on real, public data.">
+<title>Stability Diagnostics: one governance law, six readings</title>
+<meta name="description" content="One stability law, six validated instruments: live fleet radar on 10,000+ satellites, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="One stability law, five validated instruments">
-<meta property="og:description" content="Live fleet radar on 10,000+ satellites, NASA battery early warning, safe control filters. Validated on real, public data, honestly scoped.">
+<meta property="og:title" content="One stability law, six validated instruments">
+<meta property="og:description" content="Live fleet radar on 10,000+ satellites, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data, honestly scoped.">
 <meta property="og:url" content="https://oren-speiser.github.io/stability-diagnostics/">
 <meta property="og:image" content="https://oren-speiser.github.io/stability-diagnostics/hub_card.png">
 <meta property="og:image:width" content="1200">
@@ -20,7 +20,7 @@
 <style>
   :root{
     --ink:#0B0E14; --panel:#11161F; --panel2:#161D28; --line:#222B38;
-    --teal:#35D0BE; --amber:#F2A93B; --red:#E5484D; --eff:#46E0A0;
+    --teal:#35D0BE; --amber:#F2A93B; --red:#E5484D; --eff:#46E0A0; --violet:#9B7EDE;
     --text:#E6EAF0; --dim:#8A93A3; --faint:#5C6573;
     --mono:'IBM Plex Mono',ui-monospace,monospace;
     --disp:'Space Grotesk',system-ui,sans-serif;
@@ -50,7 +50,7 @@
 
   .qrow{margin-top:34px; display:flex; gap:8px; flex-wrap:wrap; font-family:var(--mono); font-size:13px; color:var(--faint); letter-spacing:.04em}
   .qrow b{font-weight:600}
-  .qrow .w{color:var(--teal)} .qrow .wh{color:var(--amber)} .qrow .whe{color:var(--red)} .qrow .ef{color:var(--eff)}
+  .qrow .w{color:var(--teal)} .qrow .wh{color:var(--amber)} .qrow .whe{color:var(--red)} .qrow .ef{color:var(--eff)} .qrow .v{color:var(--violet)}
 
   .grid{margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
   @media(max-width:780px){ .grid{grid-template-columns:1fr} }
@@ -103,8 +103,8 @@
       <span>Stability Diagnostics</span><span class="dot"></span>
       <span>A family of instruments</span>
     </div>
-    <h1>One governance law, read five ways.</h1>
-    <p class="lede">Most monitoring watches a machine fail. Three of these instruments read its stability before the failure is visible; the fourth reads how efficiently it moves; the fifth runs the law across an entire operating fleet, live. All five come from a single idea: a system stays stable, and moves economically, only while its absorption capacity keeps up with the load driving it. Each one reads that balance from a different angle, and each is grounded in real, public data.</p>
+    <h1>One governance law, read six ways.</h1>
+    <p class="lede">Most monitoring watches a machine fail. Three of these instruments read its stability before the failure is visible; the fourth reads how efficiently it moves; the fifth runs the law across an entire operating fleet, live; the sixth reads the same law in the instructions that drive AI systems. All six come from a single idea: a system stays stable, and moves economically, only while its absorption capacity keeps up with the load driving it. Each one reads that balance from a different angle, and each is grounded in real, public data.</p>
 
     <div class="law">
       <span class="sym">&Theta; = <b>I / R</b></span>
@@ -116,7 +116,8 @@
       <span class="wh"><b>WHERE</b></span><span>the weak seam is</span><span>&middot;</span>
       <span class="whe"><b>WHETHER</b></span><span>it is about to oscillate</span><span>&middot;</span>
       <span class="ef"><b>HOW WELL</b></span><span>it moves</span><span>&middot;</span>
-      <span class="w"><b>WHICH</b></span><span>unit in a fleet goes next</span>
+      <span class="w"><b>WHICH</b></span><span>unit in a fleet goes next</span><span>&middot;</span>
+      <span class="v"><b>HOW MUCH</b></span><span>an instruction can compress before it inverts</span>
     </div>
   </header>
 
@@ -194,11 +195,32 @@
     </a>
   </div>
 
+  <div class="branch fade">
+    <span class="ln"></span>
+    <span class="lbl">A fourth branch</span>
+    <span class="ln r"></span>
+  </div>
+  <div class="branch-sub">The same law on a different substrate: instructions, not machines.</div>
+  <div class="branch-note">Compression has a load and a capacity too: the critical intent an instruction carries, against the token budget left after compression. This instrument measures where that channel fails, not a machine.</div>
+
+  <div class="grid-eff">
+    <a class="card fade" style="--ac:var(--violet)" href="https://github.com/oren-speiser/compression-threshold-gauge" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 06</div>
+      <div class="q">How much</div>
+      <div class="name">Compression threshold gauge</div>
+      <div class="desc">Measures <b>how much</b> an instruction can be compressed before a safety constraint silently inverts, rather than degrades visibly.</div>
+      <div class="data">Constraint survival, not just savings.<br><span class="real">Real</span> 1,104 executions, three compressors vs. a random control; 92-100% of negation constraints silently inverted at typical compression; 204 of 246 breaks traced to channel deletion.</div>
+      <div class="go">View instrument <span class="arr">&nearr;</span></div>
+    </a>
+  </div>
+
   <div class="foot-note fade">
-    The instruments answer different questions, but they are not five ideas. They are one law,
-    <b>&Theta; = I/R</b>, instantiated five times. The same balance that says when a resource will run out
+    The instruments answer different questions, but they are not six ideas. They are one law,
+    <b>&Theta; = I/R</b>, instantiated six times. The same balance that says when a resource will run out
     also says where coupling concentrates, whether a system is sliding toward instability, how
-    efficiently it can move, and which unit of a whole fleet is next to leave its envelope. Each page states its scope plainly, including its honest limits.
+    efficiently it can move, which unit of a whole fleet is next to leave its envelope, and how much
+    an instruction can be compressed before its meaning inverts. Each page states its scope plainly, including its honest limits.
   </div>
 
   <footer>
