@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stability Diagnostics: one governance law, six readings</title>
-<meta name="description" content="One stability law, six validated instruments: live fleet radar on 10,000+ satellites, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data.">
+<title>Stability Diagnostics: one governance law, seven readings</title>
+<meta name="description" content="One stability law, seven validated instruments: live fleet radar on 10,000+ satellites, drone and eVTOL battery early warning, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="One stability law, six validated instruments">
-<meta property="og:description" content="Live fleet radar on 10,000+ satellites, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data, honestly scoped.">
+<meta property="og:title" content="One stability law, seven validated instruments">
+<meta property="og:description" content="Live fleet radar on 10,000+ satellites, drone and eVTOL battery early warning, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data, honestly scoped.">
 <meta property="og:url" content="https://oren-speiser.github.io/stability-diagnostics/">
 <meta property="og:image" content="https://oren-speiser.github.io/stability-diagnostics/hub_card.png">
 <meta property="og:image:width" content="1200">
@@ -20,7 +20,7 @@
 <style>
   :root{
     --ink:#0B0E14; --panel:#11161F; --panel2:#161D28; --line:#222B38;
-    --teal:#35D0BE; --amber:#F2A93B; --red:#E5484D; --eff:#46E0A0; --violet:#9B7EDE;
+    --teal:#35D0BE; --amber:#F2A93B; --red:#E5484D; --eff:#46E0A0; --violet:#9B7EDE; --sky:#4EA8F5;
     --text:#E6EAF0; --dim:#8A93A3; --faint:#5C6573;
     --mono:'IBM Plex Mono',ui-monospace,monospace;
     --disp:'Space Grotesk',system-ui,sans-serif;
@@ -50,7 +50,7 @@
 
   .qrow{margin-top:34px; display:flex; gap:8px; flex-wrap:wrap; font-family:var(--mono); font-size:13px; color:var(--faint); letter-spacing:.04em}
   .qrow b{font-weight:600}
-  .qrow .w{color:var(--teal)} .qrow .wh{color:var(--amber)} .qrow .whe{color:var(--red)} .qrow .ef{color:var(--eff)} .qrow .v{color:var(--violet)}
+  .qrow .w{color:var(--teal)} .qrow .wh{color:var(--amber)} .qrow .whe{color:var(--red)} .qrow .ef{color:var(--eff)} .qrow .v{color:var(--violet)} .qrow .sk{color:var(--sky)}
 
   .grid{margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
   @media(max-width:780px){ .grid{grid-template-columns:1fr} }
@@ -103,8 +103,8 @@
       <span>Stability Diagnostics</span><span class="dot"></span>
       <span>A family of instruments</span>
     </div>
-    <h1>One governance law, read six ways.</h1>
-    <p class="lede">Most monitoring watches a machine fail. Three of these instruments read its stability before the failure is visible; the fourth reads how efficiently it moves; the fifth runs the law across an entire operating fleet, live; the sixth reads the same law in the instructions that drive AI systems. All six come from a single idea: a system stays stable, and moves economically, only while its absorption capacity keeps up with the load driving it. Each one reads that balance from a different angle, and each is grounded in real, public data.</p>
+    <h1>One governance law, read seven ways.</h1>
+    <p class="lede">Most monitoring watches a machine fail. Three of these instruments read its stability before the failure is visible; the fourth reads how efficiently it moves; the fifth runs the law across an entire operating fleet, live; the sixth reads the same law in the instructions that drive AI systems; the seventh reads it inside a drone battery, months before the pack runs out of margin. All seven come from a single idea: a system stays stable, and moves economically, only while its absorption capacity keeps up with the load driving it. Each one reads that balance from a different angle, and each is grounded in real, public data.</p>
 
     <div class="law">
       <span class="sym">&Theta; = <b>I / R</b></span>
@@ -117,7 +117,8 @@
       <span class="whe"><b>WHETHER</b></span><span>it is about to oscillate</span><span>&middot;</span>
       <span class="ef"><b>HOW WELL</b></span><span>it moves</span><span>&middot;</span>
       <span class="w"><b>WHICH</b></span><span>unit in a fleet goes next</span><span>&middot;</span>
-      <span class="v"><b>HOW MUCH</b></span><span>a prompt to an AI can compress before it inverts</span>
+      <span class="v"><b>HOW MUCH</b></span><span>a prompt to an AI can compress before it inverts</span><span>&middot;</span>
+      <span class="sk"><b>HOW LONG</b></span><span>a drone battery has left</span>
     </div>
   </header>
 
@@ -215,12 +216,33 @@
     </a>
   </div>
 
+  <div class="branch fade">
+    <span class="ln"></span>
+    <span class="lbl">A fifth branch</span>
+    <span class="ln r"></span>
+  </div>
+  <div class="branch-sub">Back to hardware. The same law inside a drone battery.</div>
+  <div class="branch-note">A battery pack carries a load it cannot refuse: the takeoff pulse. Its capacity to absorb that pulse is eroded by rising internal resistance. Both quantities are already in the flight log, so the reading needs no extra sensor at all.</div>
+
+  <div class="grid-eff">
+    <a class="card fade" style="--ac:var(--sky)" href="https://github.com/oren-speiser/drone-battery-radar" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 07</div>
+      <div class="q">How long</div>
+      <div class="name">Drone battery radar</div>
+      <div class="desc">Reads <b>how long</b> a drone or eVTOL battery pack has left, from the voltage sag at every takeoff, and fires while the pack still has margin to spare.</div>
+      <div class="data">One threshold, one physical state.<br><span class="real">Real</span> 22 cells on a real eVTOL mission profile, run to failure; 9 of 9 end-of-life cells detected, 0 missed, median 53 days of warning; a single fleet-wide threshold fires at 87.2% health with a spread of only 1.5%, with no per-cell tuning.</div>
+      <div class="go">View instrument &nearr;</div>
+    </a>
+  </div>
+
   <div class="foot-note fade">
-    The instruments answer different questions, but they are not six ideas. They are one law,
-    <b>&Theta; = I/R</b>, instantiated six times. The same balance that says when a resource will run out
+    The instruments answer different questions, but they are not seven ideas. They are one law,
+    <b>&Theta; = I/R</b>, instantiated seven times. The same balance that says when a resource will run out
     also says where coupling concentrates, whether a system is sliding toward instability, how
-    efficiently it can move, which unit of a whole fleet is next to leave its envelope, and how much
-    an instruction can be compressed before its meaning inverts. Each page states its scope plainly, including its honest limits.
+    efficiently it can move, which unit of a whole fleet is next to leave its envelope, how much
+    an instruction can be compressed before its meaning inverts, and how long a battery pack has left
+    before it runs out of margin. Each page states its scope plainly, including its honest limits.
   </div>
 
   <footer>
