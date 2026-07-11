@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stability Diagnostics: one governance law, seven readings</title>
-<meta name="description" content="One stability law, seven validated instruments: live fleet radar on 10,000+ satellites, drone and eVTOL battery early warning, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data.">
+<title>Stability Diagnostics: one governance law, eight readings</title>
+<meta name="description" content="One stability law, eight validated instruments: live fleet radar on 10,000+ satellites, cosmic radiation load for Mars transits, drone and eVTOL battery early warning, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="One stability law, seven validated instruments">
+<meta property="og:title" content="One stability law, eight validated instruments">
 <meta property="og:description" content="Live fleet radar on 10,000+ satellites, drone and eVTOL battery early warning, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data, honestly scoped.">
 <meta property="og:url" content="https://oren-speiser.github.io/stability-diagnostics/">
 <meta property="og:image" content="https://oren-speiser.github.io/stability-diagnostics/hub_card.png">
@@ -20,7 +20,7 @@
 <style>
   :root{
     --ink:#0B0E14; --panel:#11161F; --panel2:#161D28; --line:#222B38;
-    --teal:#35D0BE; --amber:#F2A93B; --red:#E5484D; --eff:#46E0A0; --violet:#9B7EDE; --sky:#4EA8F5;
+    --teal:#35D0BE; --amber:#F2A93B; --red:#E5484D; --eff:#46E0A0; --violet:#9B7EDE; --sky:#4EA8F5; --sun:#E8963C;
     --text:#E6EAF0; --dim:#8A93A3; --faint:#5C6573;
     --mono:'IBM Plex Mono',ui-monospace,monospace;
     --disp:'Space Grotesk',system-ui,sans-serif;
@@ -50,7 +50,7 @@
 
   .qrow{margin-top:34px; display:flex; gap:8px; flex-wrap:wrap; font-family:var(--mono); font-size:13px; color:var(--faint); letter-spacing:.04em}
   .qrow b{font-weight:600}
-  .qrow .w{color:var(--teal)} .qrow .wh{color:var(--amber)} .qrow .whe{color:var(--red)} .qrow .ef{color:var(--eff)} .qrow .v{color:var(--violet)} .qrow .sk{color:var(--sky)}
+  .qrow .w{color:var(--teal)} .qrow .wh{color:var(--amber)} .qrow .whe{color:var(--red)} .qrow .ef{color:var(--eff)} .qrow .v{color:var(--violet)} .qrow .sk{color:var(--sky)} .qrow .su{color:var(--sun)}
 
   .grid{margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
   @media(max-width:780px){ .grid{grid-template-columns:1fr} }
@@ -103,8 +103,8 @@
       <span>Stability Diagnostics</span><span class="dot"></span>
       <span>A family of instruments</span>
     </div>
-    <h1>One governance law, read seven ways.</h1>
-    <p class="lede">Most monitoring watches a machine fail. Three of these instruments read its stability before the failure is visible; the fourth reads how efficiently it moves; the fifth runs the law across an entire operating fleet, live; the sixth reads the same law in the instructions that drive AI systems; the seventh reads it inside a drone battery, months before the pack runs out of margin. All seven come from a single idea: a system stays stable, and moves economically, only while its absorption capacity keeps up with the load driving it. Each one reads that balance from a different angle, and each is grounded in real, public data.</p>
+    <h1>One governance law, read eight ways.</h1>
+    <p class="lede">Most monitoring watches a machine fail. Three of these instruments read its stability before the failure is visible; the fourth reads how efficiently it moves; the fifth runs the law across an entire operating fleet, live; the sixth reads the same law in the instructions that drive AI systems; the seventh reads it inside a drone battery, months before the pack runs out of margin; the eighth reads the radiation load a crew would absorb on the way to Mars, and shows that the launch date decides eighteen percent of it. All eight come from a single idea: a system stays stable, and moves economically, only while its absorption capacity keeps up with the load driving it. Each one reads that balance from a different angle, and each is grounded in real, public data.</p>
 
     <div class="law">
       <span class="sym">&Theta; = <b>I / R</b></span>
@@ -118,7 +118,8 @@
       <span class="ef"><b>HOW WELL</b></span><span>it moves</span><span>&middot;</span>
       <span class="w"><b>WHICH</b></span><span>unit in a fleet goes next</span><span>&middot;</span>
       <span class="v"><b>HOW MUCH</b></span><span>a prompt to an AI can compress before it inverts</span><span>&middot;</span>
-      <span class="sk"><b>HOW LONG</b></span><span>a drone battery has left</span>
+      <span class="sk"><b>HOW LONG</b></span><span>a drone battery has left</span><span>&middot;</span>
+      <span class="su"><b>HOW MUCH</b></span><span>radiation a Mars crew absorbs, and when</span>
     </div>
   </header>
 
@@ -236,13 +237,33 @@
     </a>
   </div>
 
+  <div class="branch fade">
+    <span class="ln"></span>
+    <span class="lbl">A sixth branch</span>
+    <span class="ln r"></span>
+  </div>
+  <div class="branch-sub">The load nobody schedules around.</div>
+  <div class="branch-note">Shielding is fixed the day a ship is built. The radiation arriving is not. It swings with the solar cycle by more than twenty percent, and no amount of aluminium changes that. Launch timing is a shielding decision, and it is free.</div>
+
+  <div class="grid-eff">
+    <a class="card fade" style="--ac:var(--sun)" href="https://github.com/oren-speiser/radiation-load-radar" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 08</div>
+      <div class="q">How much</div>
+      <div class="name">Radiation load radar</div>
+      <div class="desc">Reads <b>how much</b> cosmic radiation a crew absorbs on a Mars transit, and how much of that was decided by nothing but the launch date.</div>
+      <div class="data">The same ship, eighteen percent more radiation.<br><span class="real">Real</span> 101,034 hourly readings from the Oulu neutron monitor, 2015 to now. The load swings 23% across the solar cycle. Across the real Mars departure windows since 2015, an identical ship with identical shielding absorbs 18% more radiation depending only on when it left. The failed storm detector is reported first, before any result.</div>
+      <div class="go">View instrument &nearr;</div>
+    </a>
+  </div>
+
   <div class="foot-note fade">
-    The instruments answer different questions, but they are not seven ideas. They are one law,
-    <b>&Theta; = I/R</b>, instantiated seven times. The same balance that says when a resource will run out
+    The instruments answer different questions, but they are not eight ideas. They are one law,
+    <b>&Theta; = I/R</b>, instantiated eight times. The same balance that says when a resource will run out
     also says where coupling concentrates, whether a system is sliding toward instability, how
     efficiently it can move, which unit of a whole fleet is next to leave its envelope, how much
-    an instruction can be compressed before its meaning inverts, and how long a battery pack has left
-    before it runs out of margin. Each page states its scope plainly, including its honest limits.
+    an instruction can be compressed before its meaning inverts, how long a battery pack has left
+    before it runs out of margin, and how much radiation a crew absorbs on the way to Mars. Each page states its scope plainly, including its honest limits.
   </div>
 
   <footer>
