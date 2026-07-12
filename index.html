@@ -264,7 +264,7 @@
     <span class="ln r"></span>
   </div>
   <div class="branch-sub">Where a chip sits decides when it dies. Unless you change how the heat leaves.</div>
-  <div class="branch-note">Inside one supercomputer, every GPU carries the same load. But on an air-cooled machine, cooling capacity is not uniform: cold air rises from the floor, so the top of each cabinet absorbs less. Same load, less capacity, higher &Theta;. That makes a prediction that can be proven wrong. Switch to water cooling, hold capacity uniform, and the spatial signal must vanish. It vanished.</div>
+  <div class="branch-note">On one supercomputer the coolant at the chip is air, and it is shared going up: a card near the ceiling breathes air already warmed by every card below it. Same load, less capacity, higher &Theta;. That forbids something. Give every chip its own cold plate, hold capacity uniform, and the spatial signal must vanish. It vanished, on every axis we could test.</div>
 
   <div class="grid-eff">
     <a class="card fade" style="--ac:var(--steel)" href="https://github.com/oren-speiser/gpu-fleet-radar" target="_blank" rel="noopener">
@@ -272,8 +272,8 @@
       <div class="num">INSTRUMENT 09</div>
       <div class="q">Where next</div>
       <div class="name">GPU fleet radar</div>
-      <div class="desc">Reads <b>where</b> in a GPU supercomputer the next failure is concentrated, from physical position alone. Then tests the law by removing the cause: the same reading on a water-cooled machine returns nothing.</div>
-      <div class="data">27x on air. Nothing on water.<br><span class="real">Real</span> 30,207 GPU lifetimes from air-cooled Titan (ORNL): position alone drives a 27x hazard gap, top cage 10.75x the bottom, four-year survival 93.8% at the floor against 43.4% at the ceiling. Then the falsification test: 23,520 GPUs on water-cooled Summit, where cooling capacity does not vary with height. The spatial signal is gone. Height p=0.43, slot p=0.53, floor column p=0.95. Three of our own promising findings were killed by our own controls and are documented in full.</div>
+      <div class="desc">Reads <b>where</b> in a GPU supercomputer the next failure is concentrated, from physical position alone. Then tries to prove the law wrong by removing the cause, on a second machine where every chip is cooled in parallel.</div>
+      <div class="data">27x on one machine. Nothing on the next.<br><span class="real">Real</span> 30,207 GPU lifetimes on Titan, where each card breathes air already warmed by the cards beneath it: position alone drives a 27x hazard gap, top cage 10.75x the bottom, four-year survival 93.8% at the floor against 43.4% at the ceiling. Then the falsification test on Summit, 23,520 GPUs, each with its own cold plate. Every spatial axis returns nothing: height p=0.43, slot p=0.53, column p=0.95, row p=0.52, cabinet p=0.078. Four of our own promising findings were killed by our own controls, including one that confirmed a theory we already held. All four are documented in full, with the code that kills them.</div>
       <div class="go">View instrument &nearr;</div>
     </a>
   </div>
