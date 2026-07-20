@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stability Diagnostics: one governance law, nine readings</title>
+<meta name="description" content="One stability law, nine validated instruments: live fleet radar on 10,000+ satellites, cosmic radiation load for Mars transits, drone and eVTOL battery early warning, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="One stability law, nine validated instruments">
+<meta property="og:description" content="Live fleet radar on 10,000+ satellites, drone and eVTOL battery early warning, NASA battery early warning, safe control filters, and a compression-threshold gauge for instruction safety. Validated on real, public data, honestly scoped.">
+<meta property="og:url" content="https://oren-speiser.github.io/stability-diagnostics/">
+<meta property="og:image" content="https://oren-speiser.github.io/stability-diagnostics/hub_card_v2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oren-speiser.github.io/stability-diagnostics/hub_card_v2.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0E14; --panel:#11161F; --panel2:#161D28; --line:#222B38;
+    --teal:#35D0BE; --amber:#F2A93B; --red:#E5484D; --eff:#46E0A0; --violet:#9B7EDE; --sky:#4EA8F5; --sun:#E8963C; --steel:#7FA6C9;
+    --text:#E6EAF0; --dim:#8A93A3; --faint:#5C6573;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --disp:'Space Grotesk',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--ink); color:var(--text); font-family:var(--disp); line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(900px 480px at 12% -8%, rgba(53,208,190,.07), transparent 60%),
+      radial-gradient(900px 480px at 88% -8%, rgba(229,72,77,.06), transparent 60%);}
+  .wrap{max-width:1000px; margin:0 auto; padding:40px 20px 80px}
+  a{color:inherit; text-decoration:none}
+
+  .eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--faint); display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--line)}
+
+  h1{font-size:clamp(30px,6.4vw,54px); line-height:1.02; font-weight:700; letter-spacing:-.025em; margin:20px 0 0; max-width:18ch}
+  .lede{max-width:60ch; color:var(--dim); font-size:clamp(15px,2.2vw,17.5px); margin:18px 0 0}
+
+  .law{margin-top:26px; display:inline-flex; align-items:center; gap:14px; flex-wrap:wrap;
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 18px}
+  .law .sym{font-family:var(--mono); font-size:18px; font-weight:600; color:var(--text)}
+  .law .sym b{color:var(--teal)}
+  .law .desc{font-family:var(--mono); font-size:12px; color:var(--dim); border-left:1px solid var(--line); padding-left:14px}
+
+  .qrow{margin-top:34px; display:flex; gap:8px; flex-wrap:wrap; font-family:var(--mono); font-size:13px; color:var(--faint); letter-spacing:.04em}
+  .qrow b{font-weight:600}
+  .qrow .w{color:var(--teal)} .qrow .wh{color:var(--amber)} .qrow .whe{color:var(--red)} .qrow .ef{color:var(--eff)} .qrow .v{color:var(--violet)} .qrow .sk{color:var(--sky)} .qrow .su{color:var(--sun)} .qrow .st{color:var(--steel)}
+
+  .grid{margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media(max-width:780px){ .grid{grid-template-columns:1fr} }
+
+  .branch{margin-top:30px; display:flex; align-items:center; gap:14px}
+  .branch .ln{flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--line))}
+  .branch .ln.r{background:linear-gradient(90deg,var(--line),transparent)}
+  .branch .lbl{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--eff); white-space:nowrap}
+  .branch-sub{font-family:var(--disp); font-size:clamp(17px,2.6vw,21px); font-weight:600; color:var(--text); margin:14px 0 4px; letter-spacing:-.01em}
+  .branch-note{font-family:var(--mono); font-size:12px; color:var(--dim); max-width:66ch; line-height:1.6; margin-bottom:16px}
+  .grid-eff{display:grid; grid-template-columns:1fr}
+
+  .card{position:relative; display:flex; flex-direction:column; background:var(--panel);
+    border:1px solid var(--line); border-radius:16px; padding:22px 20px 18px; overflow:hidden;
+    transition:border-color .18s ease, transform .18s ease, background .18s ease}
+  .card:hover{border-color:var(--ac); transform:translateY(-3px); background:#131A24}
+  .card:focus-visible{outline:2px solid var(--ac); outline-offset:3px}
+  .card .topline{height:3px; position:absolute; top:0; left:0; right:0; background:var(--ac); opacity:.85}
+  .card .num{font-family:var(--mono); font-size:11px; letter-spacing:.18em; color:var(--faint)}
+  .card .q{font-family:var(--disp); font-weight:700; font-size:clamp(34px,7vw,44px); line-height:1; letter-spacing:-.02em; color:var(--ac); margin:10px 0 0}
+  .card .name{font-family:var(--mono); font-size:12.5px; color:var(--text); margin-top:12px; letter-spacing:.02em}
+  .card .desc{color:var(--dim); font-size:14px; margin:10px 0 0; flex:1}
+  .card .desc b{color:var(--text); font-weight:600}
+  .card .data{font-family:var(--mono); font-size:11px; color:var(--faint); margin-top:16px; padding-top:14px; border-top:1px solid var(--line); line-height:1.55}
+  .card .data .real{color:var(--teal)}
+  .card .go{font-family:var(--mono); font-size:12px; color:var(--ac); margin-top:14px; display:inline-flex; align-items:center; gap:6px}
+  .card .go .arr{transition:transform .18s ease}
+  .card:hover .go .arr{transform:translate(3px,-3px)}
+
+  .foot-note{margin-top:32px; font-family:var(--mono); font-size:12.5px; color:var(--dim);
+    border-left:2px solid var(--line); padding:8px 0 8px 14px; max-width:74ch; line-height:1.6}
+  .foot-note b{color:var(--text); font-weight:500}
+
+  footer{margin-top:30px; display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:11.5px; color:var(--faint); border-top:1px solid var(--line); padding-top:18px}
+  footer b{color:var(--dim); font-weight:500}
+
+  @media (prefers-reduced-motion: no-preference){
+    .fade{animation:fade .6s ease both}
+    .fade.d1{animation-delay:.05s}.fade.d2{animation-delay:.1s}.fade.d3{animation-delay:.15s}
+    @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="fade">
+    <div class="eyebrow">
+      <span>Stability Diagnostics</span><span class="dot"></span>
+      <span>A family of instruments</span>
+    </div>
+    <h1>One governance law, read nine ways.</h1>
+    <p class="lede">Most monitoring watches a machine fail. Three of these instruments read its stability before the failure is visible; the fourth reads how efficiently it moves; the fifth runs the law across an entire operating fleet, live; the sixth reads the same law in the instructions that drive AI systems; the seventh reads it inside a drone battery, months before the pack runs out of margin; the eighth reads the radiation load a crew would absorb on the way to Mars, and shows that the launch date decides eighteen percent of it; the ninth reads where inside a GPU supercomputer the next failure is concentrated, from physical position against the cooling gradient. All nine come from a single idea: a system stays stable, and moves economically, only while its absorption capacity keeps up with the load driving it. Each one reads that balance from a different angle, and each is grounded in real, public data.</p>
+
+    <div class="law">
+      <span class="sym">&Theta; = <b>I / R</b></span>
+      <span class="desc">driving load over absorption capacity &middot; stable while &Theta; &lt; 1</span>
+    </div>
+
+    <div class="qrow">
+      <span class="w"><b>WHEN</b></span><span>a resource runs out</span><span>&middot;</span>
+      <span class="wh"><b>WHERE</b></span><span>the weak seam is</span><span>&middot;</span>
+      <span class="whe"><b>WHETHER</b></span><span>it is about to oscillate</span><span>&middot;</span>
+      <span class="ef"><b>HOW WELL</b></span><span>it moves</span><span>&middot;</span>
+      <span class="w"><b>WHICH</b></span><span>unit in a fleet goes next</span><span>&middot;</span>
+      <span class="v"><b>HOW MUCH</b></span><span>a prompt to an AI can compress before it inverts</span><span>&middot;</span>
+      <span class="sk"><b>HOW LONG</b></span><span>a drone battery has left</span><span>&middot;</span>
+      <span class="su"><b>HOW MUCH</b></span><span>radiation a Mars crew absorbs, and when</span><span>&middot;</span>
+      <span class="st"><b>WHERE NEXT</b></span><span>a GPU fleet fails, by physical position</span>
+    </div>
+  </header>
+
+  <main class="grid">
+
+    <a class="card fade d1" style="--ac:var(--teal)" href="https://oren-speiser.github.io/cross-domain-earlywarning/" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 01</div>
+      <div class="q">When</div>
+      <div class="name">Cross-domain early warning</div>
+      <div class="desc">Projects <b>when</b> the binding resource runs out, by tracking which capacity is closest to exhaustion across every domain at once, not one at a time.</div>
+      <div class="data">One detector, three machines.<br><span class="real">Real</span> Li-ion battery &amp; bearing; turbofan benchmark.</div>
+      <div class="go">View instrument <span class="arr">&nearr;</span></div>
+    </a>
+
+    <a class="card fade d2" style="--ac:var(--amber)" href="https://oren-speiser.github.io/coupling-seam/" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 02</div>
+      <div class="q">Where</div>
+      <div class="name">Coupling seam</div>
+      <div class="desc">Locates <b>where</b> a machine is weakest: the seam between domains where load in one quietly raises load in the next, and the dominant failure chain.</div>
+      <div class="data">Same method, two machines.<br><span class="real">Real</span> hydraulic rig &amp; turbofan engine.</div>
+      <div class="go">View instrument <span class="arr">&nearr;</span></div>
+    </a>
+
+    <a class="card fade d3" style="--ac:var(--red)" href="https://oren-speiser.github.io/critical-slowing-down/" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 03</div>
+      <div class="q">Whether</div>
+      <div class="name">Critical slowing down</div>
+      <div class="desc">Flags <b>whether</b> a machine is about to break into oscillation, by catching the slowdown in its quiet fluctuations before the oscillation is visible.</div>
+      <div class="data">Real combustion instability.<br><span class="real">Real</span> Rijke-tube thermoacoustic data; warns ~21&nbsp;s ahead.</div>
+      <div class="go">View instrument <span class="arr">&nearr;</span></div>
+    </a>
+
+  </main>
+
+  <div class="branch fade">
+    <span class="ln"></span>
+    <span class="lbl">A second branch</span>
+    <span class="ln r"></span>
+  </div>
+  <div class="branch-sub">The first three predict failure. This one finds waste.</div>
+  <div class="branch-note">The same law has a second use. Instead of asking when a machine breaks, it asks how much energy it burns to do its job, and where that energy is thrown away. Efficiency is the governance ratio minimized rather than monitored.</div>
+
+  <div class="grid-eff">
+    <a class="card fade" style="--ac:var(--eff)" href="https://oren-speiser.github.io/cost-of-transport/" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 04</div>
+      <div class="q">How well</div>
+      <div class="name">Cost of transport</div>
+      <div class="desc">Measures <b>how efficiently</b> a machine moves, and shows that choosing the right gait for each speed minimizes the energy cost of transport, which is the same load-over-capacity ratio.</div>
+      <div class="data">Efficiency, not failure.<br><span class="real">Real</span> measured quadruped power; energy-minimizing gaits on a real robot.</div>
+      <div class="go">View instrument <span class="arr">&nearr;</span></div>
+    </a>
+  </div>
+
+  <div class="branch fade">
+    <span class="ln"></span>
+    <span class="lbl">A third branch</span>
+    <span class="ln r"></span>
+  </div>
+  <div class="branch-sub">One instrument, one whole fleet.</div>
+  <div class="branch-note">The same exhaustion detector, applied unchanged to every unit of a real operating constellation at once. Atmospheric drag is the driving load, orbit maintenance is the capacity, and each satellite sits somewhere on the corridor between them.</div>
+
+  <div class="grid-eff">
+    <a class="card fade" style="--ac:var(--amber)" href="https://oren-speiser.github.io/fleet-capacity-radar/" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 05</div>
+      <div class="q">Which</div>
+      <div class="name">Fleet capacity radar: Starlink</div>
+      <div class="desc">Reads the governance state of <b>10,000+ satellites at once</b> from public orbital elements, and ranks who is closest to capacity exhaustion on a live reentry corridor.</div>
+      <div class="data">Validated early warning.<br><span class="real">Real</span> archived orbital histories; 21 of 21 deorbits detected, 0 of 10 false alarms over 13 months, median 167 days of warning before burn-up.</div>
+      <div class="go">View instrument <span class="arr">&nearr;</span></div>
+    </a>
+  </div>
+
+  <div class="branch fade">
+    <span class="ln"></span>
+    <span class="lbl">A fourth branch</span>
+    <span class="ln r"></span>
+  </div>
+  <div class="branch-sub">The same law on a different substrate: prompts sent to a large language model, not machines.</div>
+  <div class="branch-note">Compression has a load and a capacity too: the critical intent a prompt carries into an AI model, against the token budget left after compression. This instrument measures where an AI instruction channel fails, not a machine.</div>
+
+  <div class="grid-eff">
+    <a class="card fade" style="--ac:var(--violet)" href="https://github.com/oren-speiser/compression-threshold-gauge" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 06</div>
+      <div class="q">How much</div>
+      <div class="name">Compression threshold gauge</div>
+      <div class="desc">Measures <b>how much</b> a prompt sent to an AI model can be compressed before a safety constraint silently inverts, rather than degrades visibly.</div>
+      <div class="data">Constraint survival, not just savings.<br><span class="real">Real</span> 1,104 executions, three compressors vs. a random control; 92-100% of negation constraints silently inverted at typical compression; 204 of 246 breaks traced to channel deletion.</div>
+      <div class="go">View instrument <span class="arr">&nearr;</span></div>
+    </a>
+  </div>
+
+  <div class="branch fade">
+    <span class="ln"></span>
+    <span class="lbl">A fifth branch</span>
+    <span class="ln r"></span>
+  </div>
+  <div class="branch-sub">Back to hardware. The same law inside a drone battery.</div>
+  <div class="branch-note">A battery pack carries a load it cannot refuse: the takeoff pulse. Its capacity to absorb that pulse is eroded by rising internal resistance. Both quantities are already in the flight log, so the reading needs no extra sensor at all.</div>
+
+  <div class="grid-eff">
+    <a class="card fade" style="--ac:var(--sky)" href="https://github.com/oren-speiser/drone-battery-radar" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 07</div>
+      <div class="q">How long</div>
+      <div class="name">Drone battery radar</div>
+      <div class="desc">Reads <b>how long</b> a drone or eVTOL battery pack has left, from the voltage sag at every takeoff, and fires while the pack still has margin to spare.</div>
+      <div class="data">One threshold, one physical state.<br><span class="real">Real</span> 22 cells on a real eVTOL mission profile, run to failure; 9 of 9 end-of-life cells detected, 0 missed, median 53 days of warning; a single fleet-wide threshold fires at 87.2% health with a spread of only 1.5%, with no per-cell tuning.</div>
+      <div class="go">View instrument &nearr;</div>
+    </a>
+  </div>
+
+  <div class="branch fade">
+    <span class="ln"></span>
+    <span class="lbl">A sixth branch</span>
+    <span class="ln r"></span>
+  </div>
+  <div class="branch-sub">The load nobody schedules around.</div>
+  <div class="branch-note">Shielding is fixed the day a ship is built. The radiation arriving is not. It swings with the solar cycle by more than twenty percent, and no amount of aluminium changes that. Launch timing is a shielding decision, and it is free.</div>
+
+  <div class="grid-eff">
+    <a class="card fade" style="--ac:var(--sun)" href="https://github.com/oren-speiser/radiation-load-radar" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 08</div>
+      <div class="q">How much</div>
+      <div class="name">Radiation load radar</div>
+      <div class="desc">Reads <b>how much</b> cosmic radiation a crew absorbs on a Mars transit, and how much of that was decided by nothing but the launch date.</div>
+      <div class="data">The same ship, eighteen percent more radiation.<br><span class="real">Real</span> 101,034 hourly readings from the Oulu neutron monitor, 2015 to now. The load swings 23% across the solar cycle. Across the real Mars departure windows since 2015, an identical ship with identical shielding absorbs 18% more radiation depending only on when it left. The failed storm detector is reported first, before any result.</div>
+      <div class="go">View instrument &nearr;</div>
+    </a>
+  </div>
+
+  <div class="branch fade">
+    <span class="ln"></span>
+    <span class="lbl">A seventh branch</span>
+    <span class="ln r"></span>
+  </div>
+  <div class="branch-sub">Where a chip sits decides when it dies. Unless you change how the heat leaves.</div>
+  <div class="branch-note">On one supercomputer the coolant at the chip is air, and it is shared going up: a card near the ceiling breathes air already warmed by every card below it. Same load, less capacity, higher &Theta;. That forbids something. Give every chip its own cold plate, hold capacity uniform, and the spatial signal must vanish. It vanished, on every axis we could test.</div>
+
+  <div class="grid-eff">
+    <a class="card fade" style="--ac:var(--steel)" href="https://github.com/oren-speiser/gpu-fleet-radar" target="_blank" rel="noopener">
+      <div class="topline"></div>
+      <div class="num">INSTRUMENT 09</div>
+      <div class="q">Where next</div>
+      <div class="name">GPU fleet radar</div>
+      <div class="desc">Reads <b>where</b> in a GPU supercomputer the next failure is concentrated, from physical position alone. Then tries to prove the law wrong by removing the cause, on a second machine where every chip is cooled in parallel.</div>
+      <div class="data">27x on one machine. Nothing on the next.<br><span class="real">Real</span> 30,207 GPU lifetimes on Titan, where each card breathes air already warmed by the cards beneath it: position alone drives a 27x hazard gap, top cage 10.75x the bottom, four-year survival 93.8% at the floor against 43.4% at the ceiling. Then the falsification test on Summit, 23,520 GPUs, each with its own cold plate. Every spatial axis returns nothing: height p=0.43, slot p=0.53, column p=0.95, row p=0.52, cabinet p=0.078. Four of our own promising findings were killed by our own controls, including one that confirmed a theory we already held. All four are documented in full, with the code that kills them.</div>
+      <div class="go">View instrument &nearr;</div>
+    </a>
+  </div>
+
+  <div class="foot-note fade">
+    The instruments answer different questions, but they are not nine ideas. They are one law,
+    <b>&Theta; = I/R</b>, instantiated nine times. The same balance that says when a resource will run out
+    also says where coupling concentrates, whether a system is sliding toward instability, how
+    efficiently it can move, which unit of a whole fleet is next to leave its envelope, how much
+    an instruction can be compressed before its meaning inverts, how long a battery pack has left
+    before it runs out of margin, how much radiation a crew absorbs on the way to Mars, and where inside a GPU supercomputer the next failure is concentrated. Each page states its scope plainly, including its honest limits.
+  </div>
+
+  <footer>
+    <div><b>Oren A. L. Speiser</b> &middot; orensp77@gmail.com &middot; Systems Architect &middot; Tel Aviv</div>
+    <div><b>ORCID</b> 0009-0001-1205-4079 &middot; all results reproducible from public data</div>
+  </footer>
+
+</div>
+</body>
+  </html>
